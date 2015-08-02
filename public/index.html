@@ -3,11 +3,32 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        img,video,canvas{
+            border: solid;
+            border-radius: 20px;
+            margin: 10px;
+        }
+        img {
+            width: 15%;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            background-color: #C9CDDF;
+            font-size: 20px;
+            border: solid 2px;
+            margin: 10px;
+            border-radius: 20px;
+        }
+    </style>
 </head>
 <body>
 <video id="preview" autoplay></video>
-<canvas id="canvas" width="640" height="480"></canvas>
 <button id="capture">Capture</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<div id="gallery"></div>
 <script src="https://bendol212.googlecode.com/files/canvas-to-blob.min.js"></script>
 <script src="script.js"></script>
 </body>

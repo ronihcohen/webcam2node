@@ -13,9 +13,31 @@
 
             form.append('file', blob);
 
-            postAjax('/capture', form, function(data){ console.log(data); });
+            postAjax('/capture', form, 'POST', function(data){ console.log(data); });
         },'image/png');
+
+        setTimeout(function(){ genGallery(); }, 500);
+
     }
+
+    function genGallery(){
+        var gallery = document.getElementById('gallery');
+        while (gallery.firstChild) {
+            gallery.removeChild(gallery.firstChild);
+        }
+        postAjax('/list', null, 'get', function(data){
+            var imgList = JSON.parse(data);
+            imgList.forEach(function(imgUrl){
+                var img = document.createElement('img');
+                img.src = 'uploads/'+imgUrl;
+                gallery.appendChild(img);
+            });
+
+        });
+    };
+
+    genGallery();
+
 
     var constraints = {
         video: true
@@ -30,9 +52,9 @@
         video.src = URL.createObjectURL(stream);
     }, errorHandler);
 
-    function postAjax(url, data, success) {
+    function postAjax(url, data, method, success) {
         var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-        xhr.open('POST', url);
+        xhr.open(method, url);
         xhr.onreadystatechange = function() {
             if (xhr.readyState>3 && xhr.status==200) { success(xhr.responseText); }
         };
