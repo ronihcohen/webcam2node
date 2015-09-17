@@ -9,6 +9,9 @@
             border-radius: 20px;
             margin: 10px;
         }
+        canvas {
+            display: none;
+        }
         img {
             width: 15%;
         }
@@ -21,12 +24,14 @@
             margin: 10px;
             border-radius: 20px;
         }
+
     </style>
 </head>
 <body>
 <video id="preview" autoplay></video>
 <button id="capture">Capture</button>
 <canvas id="canvas" width="640" height="480"></canvas>
+<input type="text" id="msg"/>
 
 <div id="gallery"></div>
 <script src="https://bendol212.googlecode.com/files/canvas-to-blob.min.js"></script>

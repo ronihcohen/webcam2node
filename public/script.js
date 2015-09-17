@@ -12,6 +12,7 @@
             var form = new FormData();
 
             form.append('file', blob);
+            form.append('msg', document.getElementById('msg').value);
 
             postAjax('/capture', form, 'POST', function(data){ console.log(data); });
         },'image/png');
@@ -29,7 +30,8 @@
             var imgList = JSON.parse(data);
             imgList.forEach(function(imgUrl){
                 var img = document.createElement('img');
-                img.src = 'uploads/'+imgUrl;
+                img.src = 'uploads/'+imgUrl.file
+                img.alt = imgUrl.msg;
                 gallery.appendChild(img);
             });
 
